@@ -20,4 +20,3 @@ class Blog extends Model
         'content',
     ];
 }
-

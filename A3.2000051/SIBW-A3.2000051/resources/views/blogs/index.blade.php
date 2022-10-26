@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Blogs - SIBW-A3.2000051</title>
+    <title>Data Blogs - LaravelShandy</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -36,7 +36,7 @@
                                     <td>{{ $blog->title }}</td>
                                     <td>{!! $blog->content !!}</td>
                                     <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin?');" action="{{ route('blogs.destroy', $blog->id) }}" method="BLOG">
+                                        <form onsubmit="return confirm('Apakah Anda Yakin?');" action="{{ route('blogs.destroy', $blog->id) }}" method="POST">
                                             <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                             @csrf
                                             @method('DELETE')
