@@ -1,12 +1,11 @@
 # Repositori Praktikum Sistem Informasi Berbasis Web B
-# Jadwal : 10:30 - 13:00
 
 <p align="left">
 <a href="#"><img src="https://komarev.com/ghpvc/?username=SI4019&color=blueviolet"></a>
 <a href="#"><img src="https://img.shields.io/github/issues-pr/SI4019/SIBW-B?style=flat-square"></a>
 <a href="#"><img src="https://img.shields.io/github/repo-size/SI4019/SIBW-B?style=flat-square"></a>
 <a href="#"><img src="https://img.shields.io/github/commit-activity/w/SI4019/SIBW-B?style=flat-square"></a>
-<a href="#"><img src="https://travis-ci.com/FT3002/SI-IIB.svg?branch=master"></a>
+<a href="#"><img src="https://travis-ci.com/SI4019/SIBW-B.svg?branch=master"></a>
 </p>
 
 #### Selasa, 🕐 10:30 s.d 13:00
@@ -30,7 +29,7 @@ Contoh struktur direktori sebagai *berikut:*
     |   ├── Praktikum #02         # Sub Direktori hasil praktikum #02
     │   ├── Praktikum #03         # dan seterusnya.....
     │   └── README.md             # ini sebagai catatan (aturan penulisan menggunakan format Markdown
-    |                             # Contoh : Praktikum #01-Class dan Object
+    |                             # Contoh : Praktikum-01
     └── ...
 
 5. **Push** berkas tugas anda ke repositori hasil _fork_ pada _branch_ **NIM** anda.
@@ -51,9 +50,7 @@ Contoh struktur direktori sebagai *berikut:*
 
 ## Modul Praktikum 👁‍🗨
 
-- [Modul Praktikum Git & Github #0 (Intro/Setup) :octocat:](/Panduan-GIT/Praktikum-0-Git-%26-Github.md)
-- [Modul Prakikum Git & Github #1 (workflow)](Panduan-GIT/Praktikum-1-Berkontribusi-di-Proyek.md)
-- [Modul Praktikum Git & Github #2 (Revision Selection](Panduan-GIT/Praktikum-2-Simpan-Perubahan-Revisi-dengan-Git-Commit.md)
+- [Modul Praktikum Git & Github #0 (Intro/Setup) :octocat:](/)
 
 ## Referensi 🕵️‍♂️
 
@@ -74,6 +71,8 @@ Contoh struktur direktori sebagai *berikut:*
   <tr>
     <td align="center"><a href="#"><img src="https://avatars0.githubusercontent.com/u/34052001?s=460&v=4" width="100px;"
         alt="yysofiyan" /><br /><sub><b>yysofiyan</b></sub></a><br /><a</a></td>
+        <td align="center"><a href="#"><img src="https://avatars.githubusercontent.com/u/114897601?s=460&v=4" width="100px;"
+        alt="indramaula" /><br /><sub><b>Indra Maulana</b></sub></a><br /><a</a></td>
     <td align="center"><a href="https://github.com/SI4019/SIBW-B/graphs/contributors"><img src="https://contrib.rocks/image?repo=SI4019/SIBW-B" /></a>
   </tr>
 </table>
