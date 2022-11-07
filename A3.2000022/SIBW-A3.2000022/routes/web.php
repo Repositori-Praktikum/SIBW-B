@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('blog', BlogController::class);
+Route::resource('/blog', \App\Http\Controllers\BlogController::class);
