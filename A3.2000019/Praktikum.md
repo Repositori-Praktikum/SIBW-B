@@ -1,4 +1,5 @@
 Belajar Sistem Informasi Berbasis Web
+PRAKTIKUM LARAVEL
 Kelas SI-VB
 
 Nama     : Felix Yusuf Maskandinata
