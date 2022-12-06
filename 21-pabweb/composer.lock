@@ -5565,7 +5565,6 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-
                 "source": "https://github.com/filp/whoops/tree/2.14.6"
             },
             "funding": [
