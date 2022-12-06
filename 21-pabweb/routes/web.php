@@ -1,4 +1,5 @@
 <?php
+
 namespace app\http\controllers;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +20,3 @@ Route::get('/', function () {
 
 // Route resource
 Route::resource('/blog', \App\Http\Controllers\BlogController::class);
-
