@@ -1,0 +1,1 @@
+Marini Siti Aisyah Noer Abidin Prodi Sistem Informasi (VB)
