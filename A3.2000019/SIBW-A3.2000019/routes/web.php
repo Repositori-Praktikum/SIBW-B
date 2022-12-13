@@ -18,4 +18,4 @@ Route::get('/', function () {
 });
 
 //route resource
-Route::resource('/blogs', \App\Http\Controllers\BlogController::class);
+Route::resource('/blog', \App\Http\Controllers\BlogController::class);

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Edit Data Blog - Pabweblaravel</title>
+    <title>Tambah Data Blog - Pabweblaravel</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -17,15 +17,24 @@
           <div class="card border-0 shadow rounded">
             <div class="card-body">
               <form
-                action="{{ route('blogs.update', $blog->id) }}"
+                action="{{ route('blog.store') }}"
                 method="POST"
                 enctype="multipart/form-data"
               >
-                @csrf @method('PUT')
+                @csrf
 
                 <div class="form-group">
                   <label class="font-weight-bold">GAMBAR</label>
-                  <input type="file" class="form-control" name="image" />
+                  <input
+                    type="file"
+                    class="form-control @error('image') is-invalid @enderror"
+                    name="image"
+                  />
+
+                  <!-- error message untuk title -->
+                  @error('image')
+                  <div class="alert alert-danger mt-2">{{ $message }}</div>
+                  @enderror
                 </div>
 
                 <div class="form-group">
@@ -34,7 +43,7 @@
                     type="text"
                     class="form-control @error('title') is-invalid @enderror"
                     name="title"
-                    value="{{ old('title', $blog->title) }}"
+                    value="{{ old('title') }}"
                     placeholder="Masukkan Judul Blog"
                   />
 
@@ -52,7 +61,7 @@
                     rows="5"
                     placeholder="Masukkan Konten Blog"
                   >
-{{ old('content', $blog->content) }}</textarea
+{{ old('content') }}</textarea
                   >
 
                   <!-- error message untuk content -->
@@ -62,7 +71,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-md btn-primary">
-                  UPDATE
+                  SIMPAN
                 </button>
                 <button type="reset" class="btn btn-md btn-warning">
                   RESET

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Data Blogs - pabweblaravel</title>
+    <title>Data Blog - pabweblaravel</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -21,7 +21,7 @@
           <div class="card border-0 shadow rounded">
             <div class="card-body">
               <a
-                href="{{ route('blogs.create') }}"
+                href="{{ route('blog.create') }}"
                 class="btn btn-md btn-success mb-3"
                 >TAMBAH BLOG</a
               >
@@ -39,7 +39,7 @@
                   <tr>
                     <td class="text-center">
                       <img
-                        src="{{ Storage::url('public/blogs/').$blog->image }}"
+                        src="{{ Storage::url('public/blog/').$blog->image }}"
                         class="rounded"
                         style="width: 150px"
                       />
@@ -49,11 +49,11 @@
                     <td class="text-center">
                       <form
                         onsubmit="return confirm('Apakah Anda Yakin ?');"
-                        action="{{ route('blogs.destroy', $blog->id) }}"
+                        action="{{ route('blog.destroy', $blog->id) }}"
                         method="POST"
                       >
                         <a
-                          href="{{ route('blogs.edit', $blog->id) }}"
+                          href="{{ route('blog.edit', $blog->id) }}"
                           class="btn btn-sm btn-primary"
                           >EDIT</a
                         >

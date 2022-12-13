@@ -1,138 +1,121 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
-    /**
-     * index
-     * 
-     * @return void
-     */
-    public function index()
-    {
-        //get blogs
-        $blogs = Blog::latest()->paginate(5);
-
-        //render view with blogs
-        return view('blogs.index', compact('blogs'));
+    public function index() {
+        $blogs = Blog::latest()->paginate(10);
+        return view('blog.index', compact('blogs'));
     }
-
-    /** 
-     * create
-     * 
-     * @return void
-     */
     public function create()
-    {
-        return view('blogs.create');
-    }
+{
+    return view('blog.create');
+}
+
+
 /**
-     * store
-     * 
-     * @param Request $request
-     * @return void
-     */
-    public function store(Request $request)
-    {
-        //validate form
-        $this->validate($request, [
-            'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-            'title'     => 'required|min:5',
-            'content'   => 'required|min:10'
+* store
+*
+* @param  mixed $request
+* @return void
+*/
+public function store(Request $request)
+{
+    $this->validate($request, [
+        'image'     => 'required|image|mimes:png,jpg,jpeg',
+        'title'     => 'required',
+        'content'   => 'required'
+    ]);
+
+    //upload image
+    $image = $request->file('image');
+    $image->storeAs('public/blog', $image->hashName());
+
+    $blog = Blog::create([
+        'image'     => $image->hashName(),
+        'title'     => $request->title,
+        'content'   => $request->content
+    ]);
+
+    if($blog){
+        //redirect dengan pesan sukses
+        return redirect()->route('blog.index')->with(['success' => 'Data Berhasil Disimpan!']);
+    }else{
+        //redirect dengan pesan error
+        return redirect()->route('blog.index')->with(['error' => 'Data Gagal Disimpan!']);
+    }
+}
+public function edit(Blog $blog)
+{
+    return view('blog.edit', compact('blog'));
+}
+
+
+/**
+* update
+*
+* @param  mixed $request
+* @param  mixed $blog
+* @return void
+*/
+public function update(Request $request, Blog $blog)
+{
+    $this->validate($request, [
+        'title'     => 'required',
+        'content'   => 'required'
+    ]);
+
+    //get data Blog by ID
+    $blog = Blog::findOrFail($blog->id);
+
+    if($request->file('image') == "") {
+
+        $blog->update([
+            'title'     => $request->title,
+            'content'   => $request->content
         ]);
 
-        //upload image
+    } else {
+
+        //hapus old image
+        Storage::disk('local')->delete('public/blog/'.$blog->image);
+
+        //upload new image
         $image = $request->file('image');
-        $image->storeAS('public/blogs',$image->hashName());
+        $image->storeAs('public/blog', $image->hashName());
 
-        //create blog
-        Blog::create([
-            'image'     =>$image->hashName(),
-            'title'     =>$request->title,
-            'content'   =>$request->content
+        $blog->update([
+            'image'     => $image->hashName(),
+            'title'     => $request->title,
+            'content'   => $request->content
         ]);
 
-        //redirect to index
-        return redirect()->route('blogs.index')->with(['sucess' => 'Data Berhasil disimpan!']);
     }
 
-    /**
-     * edit
-     * 
-     * @param mixed $blog
-     * @return void
-     */
-    public function edit(Blog $blog)
-    {
-        return view('blogs.edit', compact('blog'));
+    if($blog){
+        //redirect dengan pesan sukses
+        return redirect()->route('blog.index')->with(['success' => 'Data Berhasil Diupdate!']);
+    }else{
+        //redirect dengan pesan error
+        return redirect()->route('blog.index')->with(['error' => 'Data Gagal Diupdate!']);
     }
+}
+public function destroy($id)
+{
+  $blog = Blog::findOrFail($id);
+  Storage::disk('local')->delete('public/blog/'.$blog->image);
+  $blog->delete();
 
-    /**
-     * update
-     * 
-     * @param mixed $request
-     * @param mixed $blog
-     * @return void
-     */
-    public function update(Request $request, Blog $blog)
-    {
-        //validate form
-        $this->validate($request, [
-            'image'     => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'title'     => 'required|min:5',
-            'content'   => 'required|min:10'
-        ]);
-
-        //check if image is uploaded
-        if ($request->hasFile('image')) {
-
-            //upload new image
-            $image = $request->file('image');
-            $image->storeAs('public/blogs',$image->hashName());
-
-            //delete old image
-            storage::delete('public/blogs/'.$blog->image);
-
-            //update post with new image
-            $blog->update([
-                'image'     => $image->hashName(),
-                'title'     => $request->title,
-                'content'   => $request->content
-            ]);
-        } else {
-
-            //update post withot image
-            $blog->update([
-                'title'     => $request->title,
-                'content'   => $request->content
-            ]);
-        }
-
-        //redirect to index
-        return redirect()->route('blogs.index')->with(['success' => 'Data Berhasil diubah!']);
-    }
-
-    /**
-     * destroy
-     * 
-     * @param mixed @blog
-     * @return void
-     */
-    public function destroy(Blog $blog)
-    {
-        //delete image
-        Storage::delete('public/blogs/'.$blog->image);
-
-        //delete post
-        $blog->delete();
-
-        //redirect to index
-        return redirect()->route('blogs.index')->with(['success' => 'Data Berhasil Dihapus!']);
-    }
-
+  if($blog){
+     //redirect dengan pesan sukses
+     return redirect()->route('blog.index')->with(['success' => 'Data Berhasil Dihapus!']);
+  }else{
+    //redirect dengan pesan error
+    return redirect()->route('blog.index')->with(['error' => 'Data Gagal Dihapus!']);
+  }
+}
 }
