@@ -1,1 +1,0 @@
-Praktikum SIBW Mugy Lugina Suarna
